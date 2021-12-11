@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>The Kaffee</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="shortcut icon" type="image/jpg" href="images\favicon.png"/>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@700&family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto&display=swap');
+
+.wrapper {
+  display: inline-flex;
+}
+
+.wrapper .icon {
+  position: relative;
+  background-color: #eae4dd;
+  border-radius: 50%;
+  padding: 15px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip {
+  position: absolute;
+  top: 0;
+  font-size: 14px;
+  background-color: #eae4dd;
+  color: #ffffff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .tooltip::before {
+  position: absolute;
+  content: "";
+  height: 8px;
+  width: 8px;
+  background-color: #402B09;
+  bottom: -3px;
+  left: 50%;
+  transform: translate(-50%) rotate(45deg);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .tooltip {
+  top: -45px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .tooltip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  color: #8F6118;
+}
+
+.wrapper .facebook:hover,
+.wrapper .facebook:hover .tooltip,
+.wrapper .facebook:hover .tooltip::before {
+  background-color: #3b5999;
+  color: #ffffff;
+}
+
+.wrapper .twitter:hover,
+.wrapper .twitter:hover .tooltip,
+.wrapper .twitter:hover .tooltip::before {
+  background-color: #46c1f6;
+  color: #ffffff;
+}
+
+.wrapper .instagram:hover,
+.wrapper .instagram:hover .tooltip,
+.wrapper .instagram:hover .tooltip::before {
+  background-color: #e1306c;
+  color: #ffffff;
+}
+
+.wrapper .github:hover,
+.wrapper .github:hover .tooltip,
+.wrapper .github:hover .tooltip::before {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.wrapper .youtube:hover,
+.wrapper .youtube:hover .tooltip,
+.wrapper .youtube:hover .tooltip::before {
+  background-color: #de463b;
+  color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style the body */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background-color: #eae4dd;
+  
+}
+
+.w3-center {
+  font-family:'Poppins', sans-serif; 
+  color: #402B09;
+}
+
+.w3-large {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 30px;
+  color: #402B09;
+}
+
+
+.info {
+	padding: 0px 20px 0px 20px;
+	overflow: hidden;
+	height: 28px;
+	border: 0px;
+	margin: 0px;
+	background-color: #402B09;
+	color: white;
+}
+
+.info h6.pleft {
+	padding-top: 5px;
+	float: left;
+	border: 0px;
+	margin: 0px;
+	font-family: 'Poppins', sans-serif;
+	font-size:12px; 
+}
+
+.info h6.pright {
+	text-align: right;
+	padding-top: 5px;
+	padding-right: 10px;
+	border: 0px;
+	margin: 0px;
+	font-family: 'Poppins', sans-serif;
+	font-size:12px; 
+}
+
+/* Header/logo Title */
+.header {
+  background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("images/coffee.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 320px;
+  padding-left: 500px;
+  text-align: center;
+  height: 100%; 
+  color: white;
+}
+
+.beans {
+  position: absolute;
+  left: 8%;
+  top: 20%;
+  border: 3px solid white;
+}
+
+.header h1 {
+  font-size: 50px;
+  position: absolute;
+  left: 54%;
+  top: 20%;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header h2 {
+  font-size: 100px;
+  position: absolute;
+  left: 45%;
+  top: 30%;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.header p {
+  font-size: 25px;
+  position: absolute;
+  left: 43%;
+  top: 50%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header h3 {
+  font-size: 20px;
+  position: absolute;
+  left: 58%;
+  top: 75%;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.header h3:hover {
+  text-shadow: 1px 1px;
+}
+
+
+.navbar {
+  overflow: hidden;
+  background-color: #eae4dd;
+  border-bottom: 3px solid #402B09;
+}
+
+.navbar a {
+  float: right;
+  display: block;
+  color: #402B09;
+  text-align: center;
+  padding: 14px 20px 0px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+}
+
+.navbar a.logo {
+  padding-left: 40px;
+  padding-right: 60px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  font-family: 'Libre Caslon Text', serif;
+  text-align: center;
+  font-weight: 900;
+  color: #402B09;
+  text-shadow: 1px 1px #FFAA04;
+  font-size: 25px;
+  float: left;
+}
+
+.navbar a.logo:hover {
+  border: none;
+  background-color: #eae4dd;
+  color: black;
+  padding-bottom: 0px;
+}
+
+.navbar a:hover {
+  padding-bottom: 11px;
+  background-color: #ddd;
+  color: black;
+  border-bottom: 3px solid brown;
+}
+
+.navbar a.active {
+  padding-bottom: 11px;
+  background-color: #ddd;
+  color: black;
+  border-bottom: 3px solid brown;
+}
+
+.featured {
+  text-align: center;
+  padding-top: 20px;
+  border-bottom: 5px solid brown;
+  max-width: 300px;
+  margin: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.featured h1{
+  font-family: 'Poppins', sans-serif;
+  color: #402B09;
+}
+
+
+.main {
+  background-color: #96794B;
+  color: #F6F2E9;
+}
+
+
+.content{
+  background:#e6e2c8;
+  width: 80%;
+  max-width: 960px;
+  min-height: 3.750em; 
+  margin: 2em auto;
+  padding: 1.250em;
+  border-radius: 0.313em;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.5);
+  line-height: 1.5em;
+  color: #292929;
+}
+
+.ribbon{
+  position:relative;
+  padding: 0 0.5em;
+  font-size:2.000em;
+  margin: 0 0 0 -0.625em;
+  line-height: 1.875em;
+  color: #e6e2c8;
+  border-radius: 0 0.156em 0.156em 0;
+  background: #402B09;
+  box-shadow: -1px 2px 3px rgba(0,0,0,0.5);
+}
+
+.ribbon:before, .ribbon:after{
+  position:absolute;
+  content: '';
+  display: block;
+}
+
+.ribbon:before{
+  width: 0.469em;
+  height: 100%;
+  padding: 0 0 0.438em;
+  top:0;
+  left: -0.469em;
+  background:inherit;
+  border-radius: 0.313em 0 0 0.313em;
+}
+
+.ribbon:after{
+  width: 0.313em;
+  height: 0.313em;
+  background: rgba(0,0,0,0.35);
+  bottom: -0.313em;
+  left: -0.313em;
+  border-radius: 0.313em 0 0 0.313em;
+  box-shadow: inset -1px 2px 2px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 600px) {
+  
+  body{
+    font-size:0.875em;
+  }
+  
+  .ribbon{
+    line-height: 1.143em;
+    padding: 0.5em;
+  }
+  
+  .ribbon:before, .ribbon:after{
+    font-size: 0.714em;
+  }
+  
+}
+
+
+button {
+  margin: 20px;
+  outline: none;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  padding: 4px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.btn-14 {
+  background: #402B09;
+  color: #fff;
+  z-index: 1;
+}
+.btn-14:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: #e0e5ec;
+  transition: all 0.3s ease;
+}
+.btn-14:hover {
+  color: #402B09;
+}
+.btn-14:hover:after {
+  top: auto;
+  bottom: 0;
+  height: 100%;
+}
+.btn-14:active {
+  top: 2px;
+}
+
+
+.w3-block{
+
+display:block;
+width:100%;
+margin-left: 0px;
+}
+
+.w3-brown {color:#fff!important;
+background-color:#402B09!important;
+}
+
+.footer #button{
+	width:35px;
+	height:35px;
+	border: #402B09 12px solid;
+	border-radius:35px;
+	margin:0 auto;
+	position:relative;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.footer #button:hover{
+	width:35px;
+	height:35px;
+	border: #402B09 12px solid;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	position:relative;
+}
+.footer {
+	bottom:0;
+	left:0;
+	position:fixed;
+    width: 100%;
+    height: 2em;
+    overflow:hidden;
+    margin:0 auto;
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	z-index:999;
+}
+.footer:hover {
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+	height: 16em;
+}
+.footer #container{
+	margin-top:5px;
+	width:100%;
+height:100%;
+  position:relative;
+  top:0;
+  left:0;
+	background: #402B09;
+}
+.footer #cont{
+  position:relative;
+  top:-45px;
+  right:190px;
+	width:150px;
+	height:auto;
+	margin:0 auto;
+}
+.footer_center{
+	width:500px;
+	float:left;
+  text-align:center;
+}
+.footer h3{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 30px;
+	font-weight: 100;
+	margin-top:70px;
+	margin-left:5px;
+  color:#eae4dd;
+}
+
+.footer .copyright {
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  color:#eae4dd;
+  margin-bottom:0;
+}
+
+@media screen and (max-width: 1200px) {
+  .header p {   
+    text-align: center;
+    align-content: center;
+    left: 5%;
+    padding-top: 50px;
+    padding-right: 20px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .header h2 {   
+    text-align: center;
+    align-content: center;
+    left: 5%;
+    line-height: 80px;
+    padding-top: 15px;
+    font-size: 90px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+   .header h3 {
+    padding-top: 50px;
+     left: 22%;
+   }  
+}
+  
+
+@media screen and (max-width: 1200px) {
+  .header h1 {   
+    text-align: center;
+    left: 10%;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .row, .navbar {   
+    flex-direction: column;
+  }
+}
+
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .grid-3{
+    flex: 100%;
+    min-width: 15%;
+  }
+
+}
+
+
+</style>
+</head>
+<body>
+
+<div class ="info">
+<h6 class = "pleft"> PROJECT PROTOTYPE </h6>
+<h6 class="pright"> THIRD EXERCISE  </h6>
+</div>
+
+<div class="navbar"> 
+  <a href="index.html" class="logo">The Kaffee</a>
+  <a href="contactpage.html" class="w3-hide-small">Contact Us</a>
+  <a href="feedbackpage.html" class="w3-hide-small">Feedbacks</a>
+  <a href="museumpage.html" class="active w3-hide-small">Coffee Museum</a>
+  <a href="productpage.html" class="w3-hide-small">Products</a>
+  <a href="mainpage.html" class="w3-hide-small">Main</a>
+</div>
+
+<br>
+<br>
+<br>
+
+<div class="content">
+  <h1 class="ribbon">We're Sorry!</h1>
+  <br>
+  <h2>This section is currently under construction.</h2>
+  <p>Coffee Museum is a section in the website where you will see the background of our business. It will feature most of varieties and origins of our products. This section will also feature a behind the scenes from our operations.</p>
+  <p>We cannot wait to share these informations and moments with you guys! This section of our site will be up soon. In the meantime, our site and shop is still up and running!</p>
+  <p>This is a note written by the development team: <a href="http://notavailable.com" target="_blank">kaffeeco.com</a></p>
+</div>
+
+<div class="footer">
+
+  <div id="button"></div>
+<div id="container">
+<div id="cont">
+<div class="footer_center">
+	   <h3>Catch Us On</h3>
+
+
+
+<div class="wrapper">
+  <div class="icon facebook">
+    <div class="tooltip">Facebook</div>
+    <span><i class="icon ion-social-facebook"></i></span>
+  </div>
+  <div class="icon twitter">
+    <div class="tooltip">Twitter</div>
+    <span><i class="icon ion-social-twitter"></i></span>
+  </div>
+  <div class="icon instagram">
+    <div class="tooltip">Instagram</div>
+    <span><i class="icon ion-social-instagram"></i></span>
+  </div>
+  <div class="icon github">
+    <div class="tooltip">Github</div>
+    <span><i class="icon ion-social-github"></i></span>
+  </div>
+  <div class="icon youtube">
+    <div class="tooltip">Youtube</div>
+    <span><i class="icon ion-social-youtube"></i></span>
+  </div>
+  </div>
+
+<p class="copyright">Created by Shaynalene Pabalate</p>
+
+
+</div>
+  </div>
+
+</body>
+</html>
+
